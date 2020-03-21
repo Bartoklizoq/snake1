@@ -43,11 +43,11 @@ namespace ConsoleApp1
             }
             else if(direction == Direction.UP)
             {
-                y = y + offset;
+                y = y - offset;
             }
             else if(direction == Direction.DOWN)
             {
-                y = y - offset;
+                y = y + offset;
             }
         }
 
@@ -57,6 +57,11 @@ namespace ConsoleApp1
             Console.Write(sym);
         }
 
+        public void Clear()
+        {
+            sym = ' ';
+            Draw();
+        }
         public override string ToString()
         {
             return x + ", " + y + ", " + sym;

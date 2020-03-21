@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1
@@ -28,13 +29,32 @@ namespace ConsoleApp1
 
            
 
-            Point p = new Point(4, 5, '#');
+            Point p = new Point(4, 5, '*');
             Snake snake = new Snake(p, 4, Direction.RIGHT);
             snake.Drow();
-            //HorizontalLine line = new HorizontalLine(5, 10, 8, '+');
-            //line.Drow();
 
+            while(true)
+            {
+                if(Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    if (key.Key == ConsoleKey.LeftArrow)
+                        snake.direction = Direction.LEFT;
+                    else if (key.Key == ConsoleKey.RightArrow)
+                        snake.direction = Direction.RIGHT;
+                    else if (key.Key == ConsoleKey.DownArrow)
+                        snake.direction = Direction.DOWN;
+                    else if (key.Key == ConsoleKey.UpArrow)
+                        snake.direction = Direction.UP;                   
+                }
+                Thread.Sleep(100);
+                snake.Move();
+            }
             
+           
+
+
+
 
             Console.ReadKey();
         }
